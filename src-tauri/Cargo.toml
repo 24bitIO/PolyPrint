@@ -1,0 +1,25 @@
+[package]
+name = "polyprint"
+version = "0.1.0"
+description = "Browse and print folders of manual pages"
+authors = ["PolyPrint"]
+edition = "2021"
+
+[lib]
+name = "polyprint_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+base64 = "0.22"
+image = { version = "0.25", default-features = false, features = ["bmp", "gif", "jpeg", "png", "tiff", "webp"] }
+jpeg-decoder = { version = "0.3", default-features = false }
+natord = "1"
+serde = { version = "1", features = ["derive"] }
+tauri = { version = "2", features = ["protocol-asset"] }
+url = "2"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Storage_FileSystem"] }
